@@ -1,0 +1,23 @@
+{
+  "name": "aidoku-serve",
+  "version": "1.1.0",
+  "description": "Serves local sources for testing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./bin/index.js",
+    "build": "tsc index.ts --outDir ./bin",
+    "pack": "npm run build && npm pack"
+  },
+  "bin": {
+    "aidoku-serve": "./bin/index.js"
+  },
+  "author": "JimIsWayTooEpic",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.31"
+  }
+}

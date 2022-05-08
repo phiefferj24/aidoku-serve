@@ -1,0 +1,3 @@
+*.aix
+/out
+/node_modules
