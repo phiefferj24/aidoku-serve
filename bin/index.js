@@ -1,10 +1,8 @@
 #! /usr/bin/env node
-"use strict";
-exports.__esModule = true;
-var fs = require("fs");
+var fs = require('fs');
 var express = require('express');
-var child_process = require("child_process");
-var os = require("os");
+var child_process = require('child_process');
+var os = require('os');
 var whitespaceRegex = /\s+(?=((\\[\\"]|[^\\"])*"(\\[\\"]|[^\\"])*")*(\\[\\"]|[^\\"])*$)/;
 var main = function () {
     var _a, _b;
@@ -39,17 +37,17 @@ var main = function () {
     console.log("Compiling sources...");
     var tempDirectory = outputDirectory + "temp/";
     if (fs.existsSync(tempDirectory)) {
-        fs.rmdirSync(tempDirectory, { recursive: true });
+        fs.rmSync(tempDirectory, { recursive: true });
     }
     fs.mkdirSync(tempDirectory, { recursive: true });
     var sourcesDirectory = outputDirectory + "sources/";
     if (fs.existsSync(sourcesDirectory)) {
-        fs.rmdirSync(sourcesDirectory, { recursive: true });
+        fs.rmSync(sourcesDirectory, { recursive: true });
     }
     fs.mkdirSync(sourcesDirectory, { recursive: true });
     var iconsDirectory = outputDirectory + "icons/";
     if (fs.existsSync(iconsDirectory)) {
-        fs.rmdirSync(iconsDirectory, { recursive: true });
+        fs.rmSync(iconsDirectory, { recursive: true });
     }
     fs.mkdirSync(iconsDirectory, { recursive: true });
     var sources = [];
@@ -75,11 +73,11 @@ var main = function () {
         fs.copyFileSync(file, sourcesDirectory + sourceFileName);
         fs.copyFileSync(filePayloadFolder + "Icon.png", outputDirectory + "icons/" + imageFileName);
         sources.push(source);
-        fs.rmdirSync(tempDirectory + fileFolder, { recursive: true });
+        fs.rmSync(tempDirectory + fileFolder, { recursive: true });
     }
     fs.writeFileSync(outputDirectory + "index.json", JSON.stringify(sources));
     fs.writeFileSync(outputDirectory + "index.min.json", JSON.stringify(sources).replace(whitespaceRegex, ""));
-    fs.rmdirSync(tempDirectory, { recursive: true });
+    fs.rmSync(tempDirectory, { recursive: true });
     console.log("Sources compiled.");
     var interfaces = os.networkInterfaces();
     var addresses = [];

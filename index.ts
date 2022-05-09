@@ -1,8 +1,8 @@
 #! /usr/bin/env node
-import * as fs from 'fs';
-import express from 'express';
-import * as child_process from 'child_process';
-import * as os from 'os';
+const fs = require('fs');
+const express = require('express');
+const child_process = require('child_process');
+const os = require('os');
 
 const whitespaceRegex = /\s+(?=((\\[\\"]|[^\\"])*"(\\[\\"]|[^\\"])*")*(\\[\\"]|[^\\"])*$)/;
 
@@ -79,7 +79,7 @@ const main = () => {
 	}
 	fs.writeFileSync(outputDirectory + "index.json", JSON.stringify(sources));
 	fs.writeFileSync(outputDirectory + "index.min.json", JSON.stringify(sources).replace(whitespaceRegex, ""));
-	fs.rmSync(tempDirectory, { rec1.1ursive: true });
+	fs.rmSync(tempDirectory, { recursive: true });
 
 	console.log("Sources compiled.");
 
