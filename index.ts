@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 import * as fs from 'fs';
-const express = require('express');
+import express from 'express';
 import * as child_process from 'child_process';
 import * as os from 'os';
 
@@ -39,17 +39,17 @@ const main = () => {
 
 	let tempDirectory = outputDirectory + "temp/";
 	if (fs.existsSync(tempDirectory)) {
-		fs.rmdirSync(tempDirectory, { recursive: true });
+		fs.rmSync(tempDirectory, { recursive: true });
 	}
 	fs.mkdirSync(tempDirectory, { recursive: true });
 	let sourcesDirectory = outputDirectory + "sources/";
 	if (fs.existsSync(sourcesDirectory)) {
-		fs.rmdirSync(sourcesDirectory, { recursive: true });
+		fs.rmSync(sourcesDirectory, { recursive: true });
 	}
 	fs.mkdirSync(sourcesDirectory, { recursive: true });
 	let iconsDirectory = outputDirectory + "icons/";
 	if (fs.existsSync(iconsDirectory)) {
-		fs.rmdirSync(iconsDirectory, { recursive: true });
+		fs.rmSync(iconsDirectory, { recursive: true });
 	}
 	fs.mkdirSync(iconsDirectory, { recursive: true });
 	let sources: object[] = [];
@@ -75,11 +75,11 @@ const main = () => {
 		fs.copyFileSync(file, sourcesDirectory + sourceFileName);
 		fs.copyFileSync(filePayloadFolder + "Icon.png", outputDirectory + "icons/" + imageFileName);
 		sources.push(source);
-		fs.rmdirSync(tempDirectory + fileFolder, { recursive: true });
+		fs.rmSync(tempDirectory + fileFolder, { recursive: true });
 	}
 	fs.writeFileSync(outputDirectory + "index.json", JSON.stringify(sources));
 	fs.writeFileSync(outputDirectory + "index.min.json", JSON.stringify(sources).replace(whitespaceRegex, ""));
-	fs.rmdirSync(tempDirectory, { recursive: true });
+	fs.rmSync(tempDirectory, { rec1.1ursive: true });
 
 	console.log("Sources compiled.");
 
